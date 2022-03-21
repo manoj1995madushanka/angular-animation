@@ -35,7 +35,16 @@ import { Component } from '@angular/core';
       transition('normal => highlighted', animate(300)),
       transition('highlighted => normal', animate(500)),
       // below start mark used to represent any state
-      transition('shrunker => *', animate(300))
+      // used to change shape
+      transition('shrunker => *', [
+        style({
+          'background-color': 'orange'
+        }),
+        animate(1000, style({
+          'borderRadius': '50px'
+        })),
+        animate(500)
+      ]),
     ])
   ]
 })
@@ -49,7 +58,7 @@ export class AppComponent {
     this.wildState == 'normal' ? this.state = 'highlighted' : this.state = 'normal';
   }
 
-  onShrink(){
+  onShrink() {
     this.wildState = 'shrunker';
   }
 
