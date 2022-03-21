@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 
 @Component({
@@ -55,15 +55,15 @@ import { Component } from '@angular/core';
       // apply animation when object adding to dom
       transition('void => *', [
         style({
-          opacity:0,
+          opacity: 0,
           transform: 'translateX(-100)'
         }),
         animate(300)
       ]),
       transition(
-        '* => void',animate(300,style({
+        '* => void', animate(300, style({
           transform: 'translateX(100)',
-          opacity:0
+          opacity: 0
         }))
       )
     ]),
@@ -79,7 +79,7 @@ import { Component } from '@angular/core';
           style({
             transform: 'translateX(-100px)',
             opacity: 0,
-            offset:0 //time of total time 
+            offset: 0 //time of total time 
           }),
           style({
             transform: 'translateX(-50x)',
@@ -99,10 +99,22 @@ import { Component } from '@angular/core';
         ]))
       ]),
       transition(
-        '* => void',animate(300,style({
-          transform: 'translateX(100)',
-          opacity:0
-        }))
+        '* => void', [
+          // group method execute animation of the array simultaniously 
+        group([
+          animate(300,
+            style({
+              color: 'red'
+            }),
+          ),
+          animate(300,
+            style({
+              transform: 'translateX(100)',
+              opacity: 0
+            }),
+          )
+        ])
+      ]
       )
     ])
   ]
