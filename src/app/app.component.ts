@@ -100,7 +100,7 @@ import { Component } from '@angular/core';
       ]),
       transition(
         '* => void', [
-          // group method execute animation of the array simultaniously 
+        // group method execute animation of the array simultaniously 
         group([
           animate(300,
             style({
@@ -141,4 +141,13 @@ export class AppComponent {
     // delete logic
     this.list.splice(this.list.indexOf(item), 1);
   }
+
+  animationStarted(event) {
+    console.log(event);
+  }
+
+  animationEnded(event) {
+    console.log(event);
+  }
+
 }
