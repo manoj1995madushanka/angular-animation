@@ -45,7 +45,28 @@ import { Component } from '@angular/core';
         })),
         animate(500)
       ]),
-    ])
+    ]),
+    trigger('list1', [
+      state('in', style({
+        'opacity': '1',
+        transform: 'translateX(0)'
+      })),
+      // void means object not added to dom yet
+      // apply animation when object adding to dom
+      transition('void => *', [
+        style({
+          opacity:0,
+          transform: 'translateX(-100)'
+        }),
+        animate(300)
+      ]),
+      transition(
+        '* => void',animate(300,style({
+          transform: 'translateX(100)',
+          opacity:0
+        }))
+      )
+    ]),
   ]
 })
 export class AppComponent {
